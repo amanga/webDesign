@@ -25,10 +25,28 @@ atcgtekApp.config(function($routeProvider){
 		templateUrl : 'pages/contact.html'
 		,controller : 'contactController'
 	})
+	//route for the contact page.
+	.when('/contact/:id',{
+		templateUrl : 'pages/contact.html?id=:id'
+		,controller : 'contactController'
+	})
 	//route for the assessment page.
 	.when('/assessments',{
 		templateUrl : 'pages/assessments.html'
 		,controller : 'assessmentController'
 	});
 
+});
+
+
+atcgtekApp.service("sharedAsmService", function(){
+	var currentAsmID = null;
+	return{
+		getCurrentAsmID: function(){
+			return currentAsmID;
+		},
+		setCurrentAsmID: function(value){
+			currentAsmID = value;
+		}
+	}
 });

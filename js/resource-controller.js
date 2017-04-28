@@ -9,7 +9,7 @@ atcgtekApp.controller('resourcesController', function($scope) {
 });
 
 
-atcgtekApp.controller('assessmentController', function($scope,$http) {
+atcgtekApp.controller('assessmentController', function($scope,$http,$location,sharedAsmService) {
 	// create a message to display in our view
 	$scope.message = 'List of Online Tests!.';
 	var url="./asm/scripts/loadAsm.php?id=all";
@@ -23,7 +23,8 @@ atcgtekApp.controller('assessmentController', function($scope,$http) {
 	// $scope.assessment = 
 	
 	$scope.loadAssessment = function(asmID){
-		console.log(asmID);
+		sharedAsmService.setCurrentAsmID(asmID);
+		$location.path("/contact/"+asmID);
 	}
 });
 
