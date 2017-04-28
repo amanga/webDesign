@@ -24,5 +24,11 @@ atcgtekApp.config(function($routeProvider){
 	.when('/contact',{
 		templateUrl : 'pages/contact.html'
 		,controller : 'contactController'
+	})
+	//route for the assessment page.
+	.when('/assessments',{
+		templateUrl : 'pages/assessments.html'
+		,controller : 'assessmentController'
 	});
+
 });

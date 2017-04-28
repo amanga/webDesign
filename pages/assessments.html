@@ -1,0 +1,15 @@
+<!-- resource.html -->
+<div class="container">
+	<h3>Online Tests</h3>
+
+	<p>{{ message }}</p>
+
+	<div class="media" ng-repeat="asm in asms">
+	  <img class="d-flex mr-3" src="..." alt="Generic placeholder image">
+	  <div class="media-body">
+		<h5 class="mt-0"><a ng-click="loadAssessment(asm.assessmentId)">{{asm.assessmentText}}</a></h5>
+			{{asm.assessmentNoteInfo}}
+			{{asm.assessmentDesc}}
+	  </div>
+	</div>
+</div>
