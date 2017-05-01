@@ -25,15 +25,20 @@ atcgtekApp.config(function($routeProvider){
 		templateUrl : 'pages/contact.html'
 		,controller : 'contactController'
 	})
-	//route for the contact page.
-	.when('/contact/:id',{
-		templateUrl : 'pages/contact.html?id=:id'
-		,controller : 'contactController'
-	})
 	//route for the assessment page.
 	.when('/assessments',{
-		templateUrl : 'pages/assessments.html'
+		templateUrl : 'pages/listassessments.html'
+		,controller : 'assessmentsController'
+	})
+	//route for the contact page.
+	.when('/assessment/:id',{
+		templateUrl : 'pages/assessment.html?id=:id'
 		,controller : 'assessmentController'
+	})
+	//assessment landing page.
+	.when('/finalasm/:correctans/:numqs/:passingPer/:id',{
+		templateUrl : 'pages/finalasm.html?id=:id&ca=:correctans&nqs=:numqs&passingPer=:passingPer'
+		,controller : 'assessmentLandingController'
 	});
 
 });

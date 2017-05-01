@@ -423,7 +423,7 @@ function randomIntNumber(min,max)
     return Math.floor(Math.random()*(max-min)+min);
 }
 
-function debugMsg(mssg){
+function debugMssg(mssg){
 	console.log(mssg);
 }
 
@@ -478,12 +478,13 @@ function getAssessment(asm,allQuestionsFlag){
 	var asmObj = new Assessment(asm.asmid,asm.asmtitle,asmQBlocks,asm.qbtitleflag,asm.qbrandom,asm.asmnote,asm.asmcomment,asm.asmdesc,asm.asmflag);
 
 	console.log("NumOFQuestion to Ask"+(((asm.askNumOfQuestions==null)||(asm.askNumOfQuestions==undefined))?defaultQuestionsToAsk:asm.askNumOfQuestions));
-	console.log("Passing Score"+(((asm.passingScore==null)||(asm.passingScore==undefined))?defaultQuestionsToAsk:asm.passingScore));
+	console.log("Passing Score"+(((asm.passingScore==null)||(asm.passingScore==undefined))?defaultPassingScore
+:asm.passingScore));
 	
 	//set num of questions to be asked.
 	asmObj.setAskNumOfQuestions((((asm.askNumOfQuestions==null)||(asm.askNumOfQuestions==undefined))?defaultQuestionsToAsk:asm.askNumOfQuestions));
 	//set passing score for the assessment.
-	asmObj.setPassingScore((((asm.passingScore==null)||(asm.passingScore==undefined))?defaultQuestionsToAsk:asm.passingScore));
+	asmObj.setPassingScore((((asm.passingScore==null)||(asm.passingScore==undefined))?defaultPassingScore:asm.passingScore));
 	asmObj.setAllQuestionsFlag(allQuestionsFlag);
 	if(asmObj.assessmentQBlockRandomizeFlag == "1"){
 		asmObj.resetQuestionBlockOrder();

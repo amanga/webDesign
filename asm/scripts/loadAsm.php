@@ -2,13 +2,14 @@
 	include_once "dao/AssessmentDao.php";
 	
 	$asmID = $_GET['id'];
-
-	if($asmID==="all"){
-		$asmDao = new AssessmentDao();
+	$asmDao = new AssessmentDao();
+	if(isset($_GET['single'])){
+		$asm = $asmDao->getAsmIDDetails($asmID);
+		echo json_encode($asm);
+	}else if($asmID==="all"){	
 		$asm = $asmDao->getAsmDetails();
 		echo json_encode($asm);
-	}else{
-		$asmDao = new AssessmentDao();
+	}else {
 		$asm = $asmDao->getAsm($asmID);
 		echo json_encode($asm);
 	}

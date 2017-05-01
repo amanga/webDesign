@@ -14,8 +14,8 @@ atcgtekApp.controller('aboutController', function($scope) {
 	$scope.message = 'Look! Iam an about page.';
 });
 
-atcgtekApp.controller('contactController', function($scope,$routeParams) {
+atcgtekApp.controller('contactController', function($scope) {
 
 	// create a message to display in our view
-	$scope.message = 'Contact us! Jack. This is just a demo.'+$routeParams.id;
+	$scope.message = 'Contact us! Jack. This is just a demo.';
 });

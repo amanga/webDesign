@@ -1,7 +1,8 @@
-var app = angular.module("myApp",[]);
+var app = atcgtekApp;
 
 var userSelectionQs = new Object();
-app.controller("mainCtrl",function($scope,$http){
+app.controller("assessmentController",function($scope,$http,$location,$routeParams){
+	console.log("Load Assessment :="+$routeParams.id);
 	$scope.debug = false;
 	$scope.showAnswers = true;
 	$scope.totalCorrectlyQsAnswered = 0;
@@ -10,7 +11,8 @@ app.controller("mainCtrl",function($scope,$http){
 
 
 	$scope.tests = "Angular js";
-	var url="scripts/test_app/loadAsm.php?id=1";
+	var asmID = $routeParams.id;
+	var url="./asm/scripts/loadAsm.php?id="+asmID;
 	$http.get(url).success(function(response){
 		var asmVal = angular.fromJson(response);
 		$scope.asm = asmVal;
@@ -92,6 +94,9 @@ app.controller("mainCtrl",function($scope,$http){
 	
 	$scope.evaluateAssessment = function() {
 		$("#myModal").modal("hide");
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').remove();
+			
 		//asked number of questions to end user.
 		$scope.totalAskedQs = $scope.asm.getNumOfSelectedQuestions();
 		$scope.totalNumOfCorrectQs = 0;
@@ -122,9 +127,6 @@ app.controller("mainCtrl",function($scope,$http){
 				// $scope.totalNumOfCorrectQs = $scope.totalNumOfCorrectQs + 1;
 				numOfCorrectQs = numOfCorrectQs + 1;
 			}
-			// debugMssg(keyQId + " -> " + userSelectionQs[keyQId]);
-			// debugMssg("Correct Answers := "+$scope.asm.getCorrectAnswers(keyQId));
-			// debugMssg("Question ["+keyQId+"] is correct "+ giveScore);
 		});
 		$scope.totalNumOfCorrectQs = numOfCorrectQs;
 		$scope.totalPassPercent = (($scope.totalNumOfCorrectQs/$scope.totalAskedQs))*100;
@@ -134,6 +136,8 @@ app.controller("mainCtrl",function($scope,$http){
 			debugMssg("Failed the Assessment");
 		}
 		debugMssg("You have scored ("+$scope.totalNumOfCorrectQs+")/"+"("+$scope.totalAskedQs+")"+  $scope.totalPassPercent +"%");
+		//results landing page.
+		$location.path("/finalasm/"+$scope.totalNumOfCorrectQs+"/"+$scope.totalAskedQs+"/"+$scope.asm.getPassingScore()+"/"+asmID);
 	}
 
 	$scope.printAssessment = function(printableArea){
@@ -143,6 +147,7 @@ app.controller("mainCtrl",function($scope,$http){
 		popupWin.document.write('<html><head><link rel="stylesheet" type="text/css" href="style.css" /></head><body onload="window.print()">' + printContent + '</body></html>');
 		popupWin.document.close();
 	}
+	
 	$scope.printNot = function(){
 		if($scope.debug){
 			return "displayBlock";

@@ -33,6 +33,31 @@
 			$conn->close();
 			return $rtnAsmArray;
 		}
+		
+		public function getAsmIDDetails($asmID){
+			$rtnAsmArray = array();
+
+			$conn = $this->dbConn->getConnection();
+			$asm_sql = "SELECT * "
+				." FROM ASSESSMENT ASM "
+				." WHERE ASM.ASSESSMENT_ID=".$asmID;
+				
+			$result = $conn->query($asm_sql);
+			if ($result->num_rows > 0) {
+				// output data of each row
+				while($row = $result->fetch_assoc()) {
+					//load question blocks
+					// $questionBlocks = $this->loadQuestionBlocks($row["ASSESSMENT_ID"]);
+					$questionBlocks = null;
+					 $asm = new Assessment($row["ASSESSMENT_ID"],$row["TITLE"],$questionBlocks,$row["QB_TITLE_FLAG"],		$row["QB_RANDOM_FLAG"],$row["NOTE"],$row["COMMENTS"],$row["DESCRIPTION"],$row["STATUS"]);
+					
+					array_push($rtnAsmArray,$asm);
+				}
+			}
+			$conn->close();
+			return $rtnAsmArray;
+		}
+		
 		public function getAllAsm(){
 			$rtnAsmArray = array();
 
