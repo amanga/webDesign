@@ -1,6 +1,18 @@
 <!-- finalasm.html 	landing page for assessment to finish. -->
 <div class="container">
-	<h1>{{asm.assessmentText}}</h1>
+	<h3>{{asm.assessmentText}}</h3>
 
-	<p>{{ message }}</p>
+	<div class="row">
+		<div class="col-sm-10">
+			<div class="row"><div class="col-sm-3"># of questions asked</div><div class="col-sm-4">{{totalAsked}}</div></div>
+			<div class="row"><div class="col-sm-3"># of questions anwered</div><div class="col-sm-4">{{answered}}</div></div>
+			<div class="row"><div class="col-sm-3">Scored</div><div class="col-sm-4">{{scored}} %</div></div>
+		</div>
+	</div>
+	
+	<br/><p>{{ message }}</p>
+	
+	<div>
+		You might be interested.
+	</div>
 </div>

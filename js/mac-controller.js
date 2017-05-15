@@ -6,6 +6,11 @@ atcgtekApp.controller('mainController', function($scope) {
 
 	// create a message to display in our view
 	$scope.message = 'Everyone come and see how good I look!';
+	
+	$scope.keydownEvent = function(event){
+		debugMssg("sdfsdf");
+		debugMssg(event.key);
+	}
 });
 
 atcgtekApp.controller('aboutController', function($scope) {

@@ -1,5 +1,8 @@
 var defaultQuestionsToAsk = 10;
 var defaultPassingScore = 60;
+var allAsmQuestions = false;
+
+var assessmentEndpoint = "./asm/scripts/loadAsm.php";
 
 /*
 	Answers
@@ -17,9 +20,14 @@ var QuestionChoice = function(qcId,qcText,qcTextType,qcCorrectFlag,qcComment,qcD
 	this.answerDescription = qcDesc;
 	this.answerFlag = qcFlag;
 	this.order = qcOrder; //anwers order
+	this.selected = qcSelected;
 	
 	this.setOrder = function(orderVal){
 		this.order = orderVal
+	}
+	
+	this.setSelected = function(selectedVal){
+		this.selected = selectedVal;
 	}
 };
 

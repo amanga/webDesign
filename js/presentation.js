@@ -1,26 +1,26 @@
 var app = atcgtekApp;
 
 var userSelectionQs = new Object();
-app.controller("assessmentController",function($scope,$http,$location,$routeParams){
+app.controller("assessmentController",function($scope,$http,$location,$route,$routeParams){
 	console.log("Load Assessment :="+$routeParams.id);
 	$scope.debug = false;
 	$scope.showAnswers = true;
 	$scope.totalCorrectlyQsAnswered = 0;
 	$scope.totalAskedQs = 0;
 	$scope.asmFriendlyMssg = "";
-
-
+	$scope.userSelectedStr ="";
 	$scope.tests = "Angular js";
+	
 	var asmID = $routeParams.id;
-	var url="./asm/scripts/loadAsm.php?id="+asmID;
+	var url= assessmentEndpoint + "?id="+asmID;
+	
 	$http.get(url).success(function(response){
+		$scope.clearAssessmentMetrics();
 		var asmVal = angular.fromJson(response);
 		$scope.asm = asmVal;
-		var asmObj = getAssessment(asmVal,false); //boolean to select all questions
+		var asmObj = getAssessment(asmVal,allAsmQuestions); //boolean to select all questions
 		$scope.asm = asmObj;
 	});
-	
-	$scope.userSelectedStr ="";
 	
 	var colAns = new Array();
 	$scope.questionChoice = function(val) {
@@ -75,6 +75,9 @@ app.controller("assessmentController",function($scope,$http,$location,$routePara
 		});
 		$scope.answeredQs = count;
 		userSelectionQs = tmpUserSelectedQs;
+	}
+	$scope.loadResource = function(){
+		$location.path("/assessments");
 	}
 	$scope.validateAssessment = function(){
 		$scope.processSelectedQs();
@@ -135,9 +138,10 @@ app.controller("assessmentController",function($scope,$http,$location,$routePara
 		}else{
 			debugMssg("Failed the Assessment");
 		}
-		debugMssg("You have scored ("+$scope.totalNumOfCorrectQs+")/"+"("+$scope.totalAskedQs+")"+  $scope.totalPassPercent +"%");
+		debugMssg("You have scored ("+$scope.totalNumOfCorrectQs+")/"+"("+$scope.totalAskedQs+")"+  $scope.totalPassPercent +"%");		
 		//results landing page.
 		$location.path("/finalasm/"+$scope.totalNumOfCorrectQs+"/"+$scope.totalAskedQs+"/"+$scope.asm.getPassingScore()+"/"+asmID);
+		$route.reload();
 	}
 
 	$scope.printAssessment = function(printableArea){
@@ -148,6 +152,13 @@ app.controller("assessmentController",function($scope,$http,$location,$routePara
 		popupWin.document.close();
 	}
 	
+	$scope.clearAssessmentMetrics = function(){
+		$scope.totalNumOfCorrectQs = 0;
+		$scope.totalPassPercent = 0;
+		$scope.totalAskedQs=0;
+		$scope.answeredQs = 0;
+		userSelectionQs = new Object();
+	}
 	$scope.printNot = function(){
 		if($scope.debug){
 			return "displayBlock";
@@ -155,6 +166,7 @@ app.controller("assessmentController",function($scope,$http,$location,$routePara
 			return "displayNone";
 		}
 	}
+	
 });
 
 
