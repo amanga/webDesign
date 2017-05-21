@@ -12,6 +12,11 @@ atcgtekApp.controller('mainController', function($scope, sharedAsmService) {
 	// create a message to display in our view
 	$scope.message = 'Everyone come and see how good I look!';
 	sharedAsmService.setPageTitle("Home Page");
+	
+	$scope.keydownEvent = function(event){
+		debugMssg("sdfsdf");
+		debugMssg(event.key);
+	}
 });
 
 atcgtekApp.controller('aboutController', function($scope, sharedAsmService) {

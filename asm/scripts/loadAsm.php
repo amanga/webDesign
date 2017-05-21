@@ -13,6 +13,5 @@
 		$asm = $asmDao->getAsm($asmID);
 		echo json_encode($asm);
 	}
-	
 
 ?>

@@ -44,7 +44,11 @@ atcgtekApp.config(function($routeProvider){
 		templateUrl : 'pages/finalasm.html?id=:id&ca=:correctans&nqs=:numqs&passingPer=:passingPer'
 		,controller : 'assessmentLandingController'
 	});
-
+	/*//assessment landing page.
+	.when('/lms-demo',{
+		templateUrl : 'pages/lms/index.html'
+		,controller : 'lmsDemoController'
+	});*/
 });
 
 

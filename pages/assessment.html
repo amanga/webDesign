@@ -1,5 +1,5 @@
 <!-- assessment.html -->
-<div class="container">
+<div class="container" oncontextmenu='return false'>
 	<div>
 		<div ng-show="debug">{{tests}}</div>
 		
@@ -12,7 +12,18 @@
 			</div>
 			<div class="row">
 				<label class="col-sm-3"># of Blocks</label><div class="col-sm-4">{{asm.getNumberOfBlocks()}}</div>
+				<div class="row">
+					<div class="col-sm-12" ng-repeat="qBlock in asm.getSortedQuestionBlocks()">
+						<div ng-show="debug" style="display:none">
+							<div class="row"><label class="col-sm-3">QB ID</label><div class="col-sm-4">{{qBlock.qBlockId}}</div></div>
+							<div class="row"><label class="col-sm-3">QB Title</label><div class="col-sm-4">{{qBlock.qBlockText}}</div></div>
+							<div class="row"><label class="col-sm-3">#Q</label><div class="col-sm-4">{{qBlock.qBlockQuestions.length}}</div></div>
+							<div class="row"><label class="col-sm-3">#Q Selected</label><div class="col-sm-4">{{asm.getNumOfSelectedQuestionsInQBlock(qBlock.qBlockId)}}</div></div>
+						</div>
+					</div>
+				</div>
 			</div>
+			
 			<div class="row" ng-show="!asm.isAllQuestions">
 				<label class="col-sm-3"># of Questions</label><div class="col-sm-4">{{asm.askNumOfQuestions}}</div>
 			</div>
@@ -37,12 +48,6 @@
 					<div class="row">
 						<div class="col-sm-12" ng-repeat="qBlock in asm.getSortedQuestionBlocks()">
 							<div ng-show="asm.assessmentQBlockTextFlag =='1'" class="row"><div class="col-sm-9"><u><h4>{{qBlock.qBlockText}}</h4></u></div></div>
-							<div ng-show="debug" style="display:none">
-								<div class="row"><label class="col-sm-3">QB ID</label><div class="col-sm-4">{{qBlock.qBlockId}}</div></div>
-								<div class="row"><label class="col-sm-3">QB Title</label><div class="col-sm-4">{{qBlock.qBlockText}}</div></div>
-								<div class="row"><label class="col-sm-3">#Q</label><div class="col-sm-4">{{qBlock.qBlockQuestions.length}}</div></div>
-								<div class="row"><label class="col-sm-3">#Q Selected</label><div class="col-sm-4">{{asm.getNumOfSelectedQuestionsInQBlock(qBlock.qBlockId)}}</div></div>
-							</div>
 							<ol class="{{(($index > 0)? 'continue' : 'start')}}">
 								<div ng-repeat="qtn in asm.getSortedQuestions(qBlock.qBlockId)">
 									<li>{{qtn.questionText}} [{{qtn.order}}] [{{qtn.questionType}}]</li>

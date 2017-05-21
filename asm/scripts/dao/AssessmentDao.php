@@ -17,7 +17,8 @@
 
 			$conn = $this->dbConn->getConnection();
 			$asm_sql = "SELECT * "
-				." FROM ASSESSMENT ASM ";
+				." FROM ASSESSMENT ASM "
+				." WHERE ASM.STATUS = true";
 			$result = $conn->query($asm_sql);
 			if ($result->num_rows > 0) {
 				// output data of each row
@@ -40,7 +41,7 @@
 			$conn = $this->dbConn->getConnection();
 			$asm_sql = "SELECT * "
 				." FROM ASSESSMENT ASM "
-				." WHERE ASM.ASSESSMENT_ID=".$asmID;
+				." WHERE ASM.STATUS = true AND ASM.ASSESSMENT_ID=".$asmID;
 				
 			$result = $conn->query($asm_sql);
 			if ($result->num_rows > 0) {
@@ -63,7 +64,8 @@
 
 			$conn = $this->dbConn->getConnection();
 			$asm_sql = "SELECT * "
-				." FROM ASSESSMENT ASM ";
+				." FROM ASSESSMENT ASM "
+				." WHERE ASM.STATUS = true";
 			$result = $conn->query($asm_sql);
 			if ($result->num_rows > 0) {
 				// output data of each row
@@ -89,7 +91,7 @@
 
 			$asm_sql = "SELECT * "
 				." FROM ASSESSMENT ASM "
-				." WHERE ASM.ASSESSMENT_ID = ".$_id;
+				." WHERE ASM.STATUS = true AND ASM.ASSESSMENT_ID = ".$_id;
 
 			$result = $conn->query($asm_sql);
 			if ($result->num_rows > 0) {
@@ -114,7 +116,9 @@
 			$conn = $this->dbConn->getConnection();
 			$sql = "SELECT QB.* "
 				." FROM QUESTIONBLOCK QB "
-				." INNER JOIN ASSESSMENT_MAPPING AM ON AM.QUESTIONBLOCK_ID=QB.QUESTIONBLOCK_ID AND AM.ASSESSMENT_ID=".$_asmID;
+				." INNER JOIN ASSESSMENT ASM ON ASM.STATUS = true AND ASM.ASSESSMENT_ID = ".$_asmID
+				." INNER JOIN ASSESSMENT_MAPPING AM ON AM.QUESTIONBLOCK_ID=QB.QUESTIONBLOCK_ID AND AM.ASSESSMENT_ID=ASM.ASSESSMENT_ID";
+				
 			$result = $conn->query($sql);
 			if ($result->num_rows > 0) {
 				// output data of each row
