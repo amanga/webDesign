@@ -24,45 +24,57 @@
 		<script src="js/resource-controller.js"></script>
 		
 		<style>
-			body { padding-top: 70px; }
+			body{
+				color:none;
+				font-family: "Trade Gothic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+				font-weight:200;
+				font-size: 15px;
+				 padding-top: 60px;
+			}
+			body table{
+				font-style:normal;
+				font-family: "Trade Gothic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			}
+			td{
+				font-family: "Trade Gothic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			}
+			input{
+				font-family: "Trade Gothic", "Helvetica Neue", Helvetica, Arial, sans-serif;
+			}
 		</style>
+		<title ng-controller="titleController">{{title}}</title>
 	</head>
 	<body ng-controller="mainController">
 
 		<!-- HEADER AND NAVBAR -->
 		<header>
-			<!-- <div class="navbar-wrapper">
-				<div class="container"> -->
-					<!--<nav class="navbar navbar-default">-->
-					<nav class="navbar navbar-inverse navbar-fixed-top">
-						<div class="container-fluid">
-							<div class="navbar-header">
-								<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-									<span class="sr-only">Toggle navigation</span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-								</button>
-								<a class="navbar-brand" href="#">Project Name</a>
-							</div>
-							<div id="navbar" class="navbar-collapse collapse">
-								<ul class="nav navbar-nav navbar-right">
-									<li><a href="#"><i></i> Home</a></li>
-									<li><a href="#about"><i></i> About</a></li>
-									<li role="presentation" class="dropdown">
-										<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars" aria-hidden="true"></i>Resources<span class="caret"></span></a>
-											<ul class="dropdown-menu">
-												<li><a href="#blogs"><i></i> Blogs</a></li>
-												<li><a href="#assessments"><i></i> Online Tests</a></li>
-											</ul>
-									</li>
-									<li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
-								</ul>
-							</div>
-						</div>
-					</nav>
-		<!-- 		</div>
-			</div> -->
+			<nav class="navbar navbar-inverse navbar-fixed-top">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">Project Name</a>
+					</div>
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="#"><i></i> Home</a></li>
+							<li><a href="#about"><i></i> About</a></li>
+							<li role="presentation" class="dropdown">
+								<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars" aria-hidden="true"></i>Resources<span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li><a href="#blogs"><i></i> Blogs</a></li>
+										<li><a href="#assessments"><i></i> Online Tests</a></li>
+									</ul>
+							</li>
+							<li><a href="#contact"><i class="fa fa-comment"></i> Contact</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>		
 		</header>
 		<!-- <div class="navbar-wrapper">
 		  <div class="container">

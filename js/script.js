@@ -19,6 +19,10 @@ atcgtekApp.config(function($routeProvider){
 	.when('/resources',{
 		templateUrl : 'pages/resources.html'
 		,controller : 'resourcesController'
+	})//route for the resources page.
+	.when('/blogs',{
+		templateUrl : 'pages/blogs.html'
+		,controller : 'blogsController'
 	})
 	//route for the contact page.
 	.when('/contact',{
@@ -45,13 +49,20 @@ atcgtekApp.config(function($routeProvider){
 
 
 atcgtekApp.service("sharedAsmService", function(){
-	var currentAsmID = null;
+	//var currentAsmID = null;
+	var pageTitle = "ATCG Technologies";
 	return{
-		getCurrentAsmID: function(){
-			return currentAsmID;
+		// getCurrentAsmID: function(){
+			// return currentAsmID;
+		// },
+		// setCurrentAsmID: function(value){
+			// currentAsmID = value;
+		// },
+		getPageTitle : function(){
+			return pageTitle;
 		},
-		setCurrentAsmID: function(value){
-			currentAsmID = value;
+		setPageTitle : function(val){
+			pageTitle = val;
 		}
-	}
+	};
 });
